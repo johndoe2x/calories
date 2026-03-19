@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calorie Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #111;
+      color: #fff;
+    }
+    input {
+      width: 60px;
+      padding: 5px;
+      margin: 5px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 500px;
+    }
+    td, th {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      background: #00ff88;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🔥 Daily Calorie Calculator</h2>
+
+<table>
+  <tr>
+    <th>Food</th>
+    <th>Qty</th>
+    <th>Calories (each)</th>
+    <th>Total</th>
+  </tr>
+
+  <tr>
+    <td>Egg Omelette</td>
+    <td><input type="number" id="egg" value="0"></td>
+    <td>90</td>
+    <td id="eggTotal">0</td>
+  </tr>
+
+  <tr>
+    <td>Fish Piece</td>
+    <td><input type="number" id="fish" value="0"></td>
+    <td>100</td>
+    <td id="fishTotal">0</td>
+  </tr>
+
+  <tr>
+    <td>Mutton (1 bowl ~150g)</td>
+    <td><input type="number" id="mutton" value="0"></td>
+    <td>300</td>
+    <td id="muttonTotal">0</td>
+  </tr>
+
+  <tr>
+    <td>Majjiga (1 glass)</td>
+    <td><input type="number" id="majjiga" value="0"></td>
+    <td>60</td>
+    <td id="majjigaTotal">0</td>
+  </tr>
+
+</table>
+
+<button onclick="calculate()">Calculate Total</button>
+
+<h2>Total Calories: <span id="total">0</span> kcal</h2>
+
+<script>
+function calculate() {
+  let egg = document.getElementById("egg").value * 90;
+  let fish = document.getElementById("fish").value * 100;
+  let mutton = document.getElementById("mutton").value * 300;
+  let majjiga = document.getElementById("majjiga").value * 60;
+
+  document.getElementById("eggTotal").innerText = egg;
+  document.getElementById("fishTotal").innerText = fish;
+  document.getElementById("muttonTotal").innerText = mutton;
+  document.getElementById("majjigaTotal").innerText = majjiga;
+
+  let total = egg + fish + mutton + majjiga;
+  document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>
