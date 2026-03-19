@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple Calorie Calculator</title>
+  <title>Fat Loss Dashboard</title>
   <style>
     body {
       font-family: Arial;
-      padding: 20px;
       background: #111;
       color: #fff;
+      padding: 20px;
     }
     input {
-      width: 60px;
+      width: 70px;
       padding: 5px;
       margin: 5px;
     }
     table {
       border-collapse: collapse;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
     }
     td, th {
       border: 1px solid #444;
@@ -31,12 +31,19 @@
       border: none;
       cursor: pointer;
     }
+    .box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #222;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
-<h2>🔥 Daily Calorie Calculator</h2>
+<h2>🔥 Fat Loss Dashboard</h2>
 
+<!-- FOOD TABLE -->
 <table>
   <tr>
     <th>Food</th>
@@ -75,11 +82,35 @@
 
 </table>
 
-<button onclick="calculate()">Calculate Total</button>
+<button onclick="calculate()">Calculate</button>
 
 <h2>Total Calories: <span id="total">0</span> kcal</h2>
 
+<!-- STEPS SECTION -->
+<div class="box">
+  <h3>🚶 Steps & Fat Loss</h3>
+
+  Daily Steps:
+  <input type="number" id="steps" value="10000">
+
+  <br><br>
+
+  Target Fat Loss (kg):
+  <input type="number" id="targetKg" value="1">
+
+  <br><br>
+
+  <button onclick="calculateFatLoss()">Calculate Fat Loss Time</button>
+
+  <h3>📊 Results</h3>
+  <p>Calories burned from steps/day: <span id="stepCalories">0</span> kcal</p>
+  <p>Days to lose 1 kg: <span id="days1kg">0</span> days</p>
+  <p>Days to reach target: <span id="daysTarget">0</span> days</p>
+</div>
+
 <script>
+
+// FOOD CALCULATION
 function calculate() {
   let egg = document.getElementById("egg").value * 90;
   let fish = document.getElementById("fish").value * 100;
@@ -94,6 +125,26 @@ function calculate() {
   let total = egg + fish + mutton + majjiga;
   document.getElementById("total").innerText = total;
 }
+
+// FAT LOSS CALCULATION
+function calculateFatLoss() {
+  let steps = document.getElementById("steps").value;
+  let targetKg = document.getElementById("targetKg").value;
+
+  // approx calories burned per step
+  let caloriesPerStep = 0.04; 
+
+  let caloriesBurned = steps * caloriesPerStep;
+
+  // 1 kg fat = 7700 kcal
+  let daysFor1kg = 7700 / caloriesBurned;
+  let daysForTarget = daysFor1kg * targetKg;
+
+  document.getElementById("stepCalories").innerText = Math.round(caloriesBurned);
+  document.getElementById("days1kg").innerText = Math.round(daysFor1kg);
+  document.getElementById("daysTarget").innerText = Math.round(daysForTarget);
+}
+
 </script>
 
 </body>
